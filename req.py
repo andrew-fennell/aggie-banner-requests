@@ -8,6 +8,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
+import CONFIG
+import makedir
 
 
 #======================== HOW TO CONSTRUCT 'TERM' ========================#
@@ -35,24 +37,15 @@ EXAMPLES:
 
 #============================ GLOBAL VARIABLES ============================#
 
-base_url = 'compassxe-ssb.tamu.edu'
-subjects = [
-    'ACCT', 'AEGD', 'AERO', 'AERS', 'AFST', 'AGCJ', 'AGEC', 'AGLS', 'AGSC', 'AGSM', 'ALEC', 'ALED', 'ANSC', 'ANTH',
-    'ARAB', 'ARCH', 'AREN', 'ARTS', 'ASCC', 'ASTR', 'ATMO', 'ATTR', 'BAEN', 'BEFB', 'BESC', 'BICH', 'BIED', 'BIMS',
-    'BIOL', 'BIOT', 'BMEN', 'BUAD', 'BUSH', 'BUSN', 'CARC', 'CEHD', 'CHEM', 'CHEN', 'CHIN', 'CLAS', 'CLBA', 'CLEN',
-    'CLGE', 'CLSC', 'COMM', 'COSC', 'CPSY', 'CSCE', 'CVEN', 'DASC', 'DCED', 'DDHS', 'DPHS', 'ECEN', 'ECMT', 'ECON',
-    'EDAD', 'EDCI', 'EDHP', 'EDTC', 'EEBL', 'EHRD', 'ENDO', 'ENDS', 'ENGL', 'ENGR', 'ENTC', 'ENTO', 'EPFB', 'EPSY',
-    'ESET', 'ESSM', 'EURO', 'EVEN', 'FILM', 'FINC', 'FIVS', 'FREN', 'FYEX', 'GENE', 'GEOG', 'GEOL', 'GEOP', 'GEOS',
-    'GERM', 'HCPI', 'HEFB', 'HISP', 'HIST', 'HLTH', 'HORT', 'HPCH', 'IBST', 'IBUS', 'ICPE', 'IDIS', 'INST', 'INTA',
-    'INTS', 'ISEN', 'ISTM', 'ITAL', 'ITDE', 'JAPN', 'JOUR', 'KINE', 'KNFB', 'LAND', 'LAW', 'LBAR', 'LBEV', 'LING',
-    'LMAS', 'MASC', 'MATH', 'MEEN', 'MEFB', 'MEMA', 'MEPS', 'MGMT', 'MKTG', 'MLSC', 'MMET', 'MPHY', 'MPIM', 'MSCI',
-    'MSEN', 'MUSC', 'MUST', 'MXET', 'NEXT', 'NFSC', 'NRSC', 'NURS', 'NVSC', 'OBIO', 'OCEN', 'OCNG', 'OMFP', 'OMFR',
-    'OMFS', 'ORTH', 'PEDD', 'PERF', 'PERI', 'PETE', 'PHAR', 'PHEB', 'PHEO', 'PHIL', 'PHLT', 'PHPM', 'PHSC', 'PHYS',
-    'PLAN', 'PLPA', 'POLS', 'POSC', 'PROS', 'PSAA', 'PSYC', 'RDNG', 'RELS', 'RENR', 'RPTS', 'RUSS', 'SABR', 'SCEN',
-    'SCMT', 'SEFB', 'SENG', 'SOCI', 'SOMS', 'SOPH', 'SPAN', 'SPED', 'SPMT', 'SPSY', 'STAT', 'TAMU', 'TCMG', 'TCMT',
-    'TEED', 'TEFB', 'THAR', 'UGST', 'URPN', 'URSC', 'VIBS', 'VIST', 'VIZA', 'VLCS', 'VMID', 'VPAT', 'VSCS', 'VTMI',
-    'VTPB', 'VTPP', 'WFSC', 'WGST', 'WMHS'
-]
+path = os.path.dirname(os.path.realpath(__file__))
+CHROME_DRIVER = CONFIG.VARIABLES['chrome_driver']
+base_url = CONFIG.VARIABLES['base_url']
+subjects = CONFIG.VARIABLES['subjects']
+
+
+
+
+
 
 def CompassConstructSearch(dept, course, sessionID, term, pageMaxSize=1000):
     '''Constructs search request url given the inputs.'''
@@ -73,7 +66,7 @@ def start_session():
     # Open Headless Selenium
     chrome_options = Options()  
     chrome_options.add_argument("--headless")  
-    s = webdriver.Chrome('C:/Users/Andrew/projects/agreq/chromedriver.exe', options=chrome_options)
+    s = webdriver.Chrome(CHROME_DRIVER, options=chrome_options)
 
     # Load page to initialize session
     s.get('https://{}/StudentRegistrationSsb/ssb/term/termSelection?mode=search'.format(base_url))
@@ -277,7 +270,6 @@ def get_course(session, sessionID, department, course, term):
                 
             json_data['course'].append(make_course_json(x))
             
-
         print("Data Retrieved for " + department + course)
     else:
         print("No data for " + department + course)
@@ -295,18 +287,22 @@ def startDB():
 #    for dept in subjects:
 
 def makeFolders():
-    return
+    makedir.initFolders()
 
 def main():
+    # Make directories if needed
+    if (not os.path.isfile(path + '/courses/ACCT')):
+        makeFolders()
     
     # Start session
     session, sessionID = start_session()
 
     term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
 
-    #get_all_courses(session, sessionID, term)               # Example of getting ALL data
-    #get_department(session, sessionID, 'CSCE', term)         # Example of getting one department's data
-    get_course(session, sessionID, 'CSCE', '121', term)     # Example of getting one course's data
+    # THESE ARE 3 WAYS TO RUN THE PROGRAM:
+    get_all_courses(session, sessionID, term)                # Example of getting ALL data
+    #get_department(session, sessionID, 'MATH', term)        # Example of getting one department's data
+    #get_course(session, sessionID, 'CSCE', '221', term)     # Example of getting one course's data
 
 
     # Threading to collect data from ALL courses quicker... It might be a sloppy solution though
@@ -321,7 +317,7 @@ def main():
     
     #client, collection_course = startDB()
 
-    #directory = r'C:\Users\Andrew\projects\agreq\courses'
+    #directory = path + '\courses'
 
     #for subdir, dirs, files in os.walk(directory):
     #   for filename in files:
