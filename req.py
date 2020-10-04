@@ -196,17 +196,17 @@ def get_all_courses(session, sessionID, term):
         data = search(session, sessionID, department, '', '202031')
         print()
         
-        # Write data to file to courses/{department}/{courseNumber}.txt
+        # Write data to file to courses/{department}/{courseNumber}.json
         if data:
             prev = str(data[0]['courseNumber'])
-            outfile = open('courses/' + department + "/" + prev + ".txt", 'w+')
+            outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
             for x in data:
 
                 current = str(x['courseNumber'])
                 if prev != current:
                     outfile.close()
                     prev = current
-                    outfile = open('courses/' + department + "/" + prev + ".txt", 'w+')
+                    outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
                     
                 write_data(outfile, x)
 
@@ -231,7 +231,16 @@ def get_department(session, sessionID, department, term):
     
     # Write data to file to courses/{department}/{courseNumber}.txt
     if data:
-        #
+        prev = str(data[0]['courseNumber'])
+        outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
+        for x in data:
+            current = str(x['courseNumber'])
+            if prev != current:
+                outfile.close()
+                prev = current
+                outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
+                
+            write_data(outfile, x)
 
         print("Data Retrieved for " + department)
     else:
@@ -253,7 +262,7 @@ def get_course(session, sessionID, department, course, term):
     
     json_data = {}
     json_data['course'] = []
-    # Write data to file to courses/{department}/{courseNumber}.txt
+    # Write data to file to courses/{department}/{courseNumber}.json
     if data:
         prev = str(data[0]['courseNumber'])
         for x in data:
@@ -284,7 +293,9 @@ def startDB():
 
 #def dataToDB():
 #    for dept in subjects:
-        
+
+def makeFolders():
+    return
 
 def main():
     
@@ -292,9 +303,10 @@ def main():
     session, sessionID = start_session()
 
     term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
+
     #get_all_courses(session, sessionID, term)               # Example of getting ALL data
-    #get_department(session, sessionID, 'CSCE', term)       # Example of getting one department's data
-    #get_course(session, sessionID, 'CSCE', '121', term)    # Example of getting one course's data
+    #get_department(session, sessionID, 'CSCE', term)         # Example of getting one department's data
+    get_course(session, sessionID, 'CSCE', '121', term)     # Example of getting one course's data
 
 
     # Threading to collect data from ALL courses quicker... It might be a sloppy solution though
@@ -304,27 +316,26 @@ def main():
         for dept in subjects:
             processes.append(executor.submit(get_department, session, sessionID, dept, term))
 
-    
     print("\n========================\n")
     """
+    
+    #client, collection_course = startDB()
 
-    client, collection_course = startDB()
+    #directory = r'C:\Users\Andrew\projects\agreq\courses'
 
-    directory = r'C:\Users\Andrew\projects\agreq\courses'
+    #for subdir, dirs, files in os.walk(directory):
+    #   for filename in files:
+     #       if filename.endswith('.json'):
+      #          
+       #         with open(r'{}\{}'.format(subdir,filename)) as file: 
+        #            file_data = json.load(file)
+         #       
+          #      if file_data:
+           #         if isinstance(file_data, list): 
+            #            collection_course.insert_many(file_data)   
+             #       else: 
+              #          collection_course.insert_one(file_data) 
 
-    for subdir, dirs, files in os.walk(directory):
-        for filename in files:
-            if filename.endswith('.json'):
-                
-                with open(r'{}\{}'.format(subdir,filename)) as file: 
-                    file_data = json.load(file)
-                
-                if file_data:
-                    if isinstance(file_data, list): 
-                        collection_course.insert_many(file_data)   
-                    else: 
-                        collection_course.insert_one(file_data) 
-
-    client.close()
+    #client.close()
 
 main()

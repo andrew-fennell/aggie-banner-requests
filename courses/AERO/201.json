@@ -1,0 +1,66 @@
+courseTitle: HNR-INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 200
+id: 520924
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 25
+enrollment: 25
+seatsAvailable: 0
+
+courseTitle: HNR-INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 201
+id: 532600
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 26
+enrollment: 26
+seatsAvailable: 0
+
+courseTitle: INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 500
+id: 520925
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 46
+enrollment: 47
+seatsAvailable: -1
+
+courseTitle: INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 502
+id: 532461
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 32
+enrollment: 31
+seatsAvailable: 1
+
+courseTitle: INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 503
+id: 535107
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 32
+enrollment: 28
+seatsAvailable: 4
+
+courseTitle: INTRO TO FLIGHT
+subject: AERO
+courseNumber: 201
+sequenceNumber: 504
+id: 537177
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 32
+enrollment: 29
+seatsAvailable: 3
+

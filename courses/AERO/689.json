@@ -1,0 +1,44 @@
+courseTitle: SPTP:AERO HUM SYS INT BIOASTR
+subject: AERO
+courseNumber: 689
+sequenceNumber: 600
+id: 558656
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 20
+enrollment: 11
+seatsAvailable: 9
+
+courseTitle: SPTP:HUMAN PERF AERO
+subject: AERO
+courseNumber: 689
+sequenceNumber: 601
+id: 558664
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 19
+enrollment: 15
+seatsAvailable: 4
+
+courseTitle: SPTP:METAMATL &amp; NANOPHOTONICS
+subject: AERO
+courseNumber: 689
+sequenceNumber: 702
+id: 559992
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 15
+enrollment: 6
+seatsAvailable: 9
+
+courseTitle: SPTP:AEROELAST AND STRCT DYNM
+subject: AERO
+courseNumber: 689
+sequenceNumber: 703
+id: 559997
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 5
+enrollment: 2
+seatsAvailable: 3
+

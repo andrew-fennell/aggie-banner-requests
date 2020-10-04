@@ -1,0 +1,22 @@
+courseTitle: SEMINAR
+subject: ARCH
+courseNumber: 481
+sequenceNumber: 500
+id: 528950
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 80
+enrollment: 15
+seatsAvailable: 65
+
+courseTitle: SEMINAR
+subject: ARCH
+courseNumber: 481
+sequenceNumber: 501
+id: 528951
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 10
+enrollment: 3
+seatsAvailable: 7
+

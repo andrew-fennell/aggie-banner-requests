@@ -1,0 +1,33 @@
+courseTitle: HNR-ENV &amp; NAT RESOURCE ECON
+subject: AGEC
+courseNumber: 350
+sequenceNumber: 200
+id: 527987
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 0
+enrollment: 3
+seatsAvailable: -3
+
+courseTitle: ENV &amp; NAT RESOURCE ECON
+subject: AGEC
+courseNumber: 350
+sequenceNumber: 501
+id: 520979
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 20
+enrollment: 19
+seatsAvailable: 1
+
+courseTitle: ENV &amp; NAT RESOURCE ECON
+subject: AGEC
+courseNumber: 350
+sequenceNumber: 502
+id: 520980
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 48
+enrollment: 48
+seatsAvailable: 0
+

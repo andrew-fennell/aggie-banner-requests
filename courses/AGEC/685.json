@@ -1,0 +1,33 @@
+courseTitle: DIRECTED STUDIES
+subject: AGEC
+courseNumber: 685
+sequenceNumber: 602
+id: 528495
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 1
+enrollment: 1
+seatsAvailable: 0
+
+courseTitle: DIRECTED STUDIES
+subject: AGEC
+courseNumber: 685
+sequenceNumber: 620
+id: 525222
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 0
+enrollment: 1
+seatsAvailable: -1
+
+courseTitle: DIRECTED STUDIES
+subject: AGEC
+courseNumber: 685
+sequenceNumber: 660
+id: 527336
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 1
+enrollment: 2
+seatsAvailable: -1
+

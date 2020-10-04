@@ -1,0 +1,55 @@
+courseTitle: GENERAL ANIMAL SCIENCE
+subject: ANSC
+courseNumber: 107
+sequenceNumber: 501
+id: 521026
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 600
+enrollment: 585
+seatsAvailable: 15
+
+courseTitle: GENERAL ANIMAL SCIENCE
+subject: ANSC
+courseNumber: 107
+sequenceNumber: 502
+id: 521027
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 10
+enrollment: 274
+seatsAvailable: -264
+
+courseTitle: GENERAL ANIMAL SCIENCE
+subject: ANSC
+courseNumber: 107
+sequenceNumber: 700
+id: 531945
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 25
+enrollment: 26
+seatsAvailable: -1
+
+courseTitle: GENERAL ANIMAL SCIENCE
+subject: ANSC
+courseNumber: 107
+sequenceNumber: 701
+id: 534310
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 25
+enrollment: 24
+seatsAvailable: 1
+
+courseTitle: GENERAL ANIMAL SCIENCE
+subject: ANSC
+courseNumber: 107
+sequenceNumber: M99
+id: 559524
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 0
+enrollment: 14
+seatsAvailable: -14
+

@@ -1,0 +1,44 @@
+courseTitle: SOFTWARE ENGINEERING
+subject: CSCE
+courseNumber: 431
+sequenceNumber: 500
+id: 536507
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 45
+enrollment: 41
+seatsAvailable: 4
+
+courseTitle: SOFTWARE ENGINEERING
+subject: CSCE
+courseNumber: 431
+sequenceNumber: 501
+id: 536508
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 45
+enrollment: 38
+seatsAvailable: 7
+
+courseTitle: SOFTWARE ENGINEERING
+subject: CSCE
+courseNumber: 431
+sequenceNumber: 502
+id: 536509
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 45
+enrollment: 36
+seatsAvailable: 9
+
+courseTitle: SOFTWARE ENGINEERING
+subject: CSCE
+courseNumber: 431
+sequenceNumber: 503
+id: 560322
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 45
+enrollment: 14
+seatsAvailable: 31
+

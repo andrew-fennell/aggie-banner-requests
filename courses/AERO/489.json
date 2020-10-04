@@ -1,0 +1,77 @@
+courseTitle: SPTP: HUMAN PERF AERO
+subject: AERO
+courseNumber: 489
+sequenceNumber: 500
+id: 556162
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 31
+enrollment: 30
+seatsAvailable: 1
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 903
+id: 557573
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 2
+enrollment: 1
+seatsAvailable: 1
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 904
+id: 557584
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 4
+enrollment: 3
+seatsAvailable: 1
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 905
+id: 557585
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 4
+enrollment: 4
+seatsAvailable: 0
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 906
+id: 557586
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 2
+enrollment: 3
+seatsAvailable: -1
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 907
+id: 557587
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 2
+enrollment: 3
+seatsAvailable: -1
+
+courseTitle: SPTP:AERO ENGINEERING LAB
+subject: AERO
+courseNumber: 489
+sequenceNumber: 908
+id: 557588
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 2
+enrollment: 3
+seatsAvailable: -1
+

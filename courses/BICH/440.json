@@ -1,0 +1,44 @@
+courseTitle: HNR-BIOCHEMISTRY I
+subject: BICH
+courseNumber: 440
+sequenceNumber: 201
+id: 521187
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 5
+enrollment: 2
+seatsAvailable: 3
+
+courseTitle: HNR-BIOCHEMISTRY I
+subject: BICH
+courseNumber: 440
+sequenceNumber: 202
+id: 521188
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 5
+enrollment: 2
+seatsAvailable: 3
+
+courseTitle: BIOCHEMISTRY I
+subject: BICH
+courseNumber: 440
+sequenceNumber: 501
+id: 521189
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 50
+enrollment: 49
+seatsAvailable: 1
+
+courseTitle: BIOCHEMISTRY I
+subject: BICH
+courseNumber: 440
+sequenceNumber: 502
+id: 521190
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 50
+enrollment: 44
+seatsAvailable: 6
+

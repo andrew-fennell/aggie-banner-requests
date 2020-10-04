@@ -1,0 +1,33 @@
+courseTitle: HNR-STATISTICS FOR BMEN
+subject: BMEN
+courseNumber: 350
+sequenceNumber: 201
+id: 531606
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 10
+enrollment: 9
+seatsAvailable: 1
+
+courseTitle: STATISTICS FOR BMEN
+subject: BMEN
+courseNumber: 350
+sequenceNumber: 500
+id: 528870
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 65
+enrollment: 49
+seatsAvailable: 16
+
+courseTitle: STATISTICS FOR BMEN
+subject: BMEN
+courseNumber: 350
+sequenceNumber: 501
+id: 528871
+term: 202031
+campusDescription: College Station
+maximumEnrollment: 70
+enrollment: 65
+seatsAvailable: 5
+
