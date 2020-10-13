@@ -6,8 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
-import CONFIG
-import makedir
+import config
+import makedirectories
 
 
 #======================== HOW TO CONSTRUCT 'TERM' ========================#
@@ -36,9 +36,9 @@ EXAMPLES:
 #============================ GLOBAL VARIABLES ============================#
 
 path = os.path.dirname(os.path.realpath(__file__))
-CHROME_DRIVER = CONFIG.VARIABLES['chrome_driver']
-base_url = CONFIG.VARIABLES['base_url']
-subjects = CONFIG.VARIABLES['subjects']
+CHROME_DRIVER = config.VARIABLES['chrome_driver']
+base_url = config.VARIABLES['base_url']
+subjects = config.VARIABLES['subjects']
 
 
 
@@ -225,18 +225,26 @@ def get_course(session, sessionID, department, course, term):
 
 def makeFolders():
     if (not os.path.isdir(path + "/courses/ACCT")): # checks to see if the directories are already made
-        makedir.initFolders() # if directories do not exist, create them
+        makedirectories.initFolders() # if directories do not exist, create them
 
 
 
+# The following is an example of how the program could be ran
+# Uncomment the code if you want to test.
+
+"""
 # Start session
-# session, sessionID = start_session()
+session, sessionID = start_session()
 
 # Setup term
-# term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
+term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
+
+# Check for folder, make if needed
+makeFolders()
 
 # THESE ARE 3 FUNCTIONS THAT GET DATA:
-# get_all_courses(session, sessionID, term)               # Example of getting ALL data
-# get_department(session, sessionID, 'ACCT', term)        # Example of getting one department's data
-# get_course(session, sessionID, 'CSCE', '221', term)     # Example of getting one course's data
+# get_all_courses(session, sessionID, term)               # Example of getting ALL data, this will take about 90 seconds.
+# get_department(session, sessionID, 'ACCT', term)        # Example of getting one department's data, this will be quick.
+# get_course(session, sessionID, 'CSCE', '221', term)     # Example of getting one course's data, this is the fastest
 
+"""

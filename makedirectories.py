@@ -1,8 +1,8 @@
 import os
-import CONFIG
+import config
 
 def initFolders():
-    subjects = CONFIG.VARIABLES['subjects']
+    subjects = config.VARIABLES['subjects']
     path = os.path.dirname(os.path.realpath(__file__))
     os.mkdir(path + '/courses')
 

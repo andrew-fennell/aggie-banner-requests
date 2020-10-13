@@ -1,15 +1,26 @@
-# aggie-banner-requests
+# Scraper
 
-This program will scrape all data from a Banner server.
+The scraper.py script scrapes data from Banner.
 
 ## Usage
 
-Configure settings in CONFIG.py if any of your settings are different from the default. If your banner URL or departments are different, those will need to be changed.
-
-The default function that will run is the get_all_courses function. This gets all the data from every single course at the university. This can be changed in the main function if you require something different.
+Configure settings in config.py if any of your settings are different from the default. Please check the config.py before implementing.
 
 Directories should be made automatically. If you run the program in it's default state, it will create all directories will be made automatically. Each department folder will be filled with the appropriate json files containing course data.
 
-## Contributing
+The term variable can be constructed using the information given in scraper.py.
 
-Pull requests are welcome. For major changes, please open an issue so we can discuss beforehand.
+There are three main functions in scraper.py:
+
+get_all_courses retrieves all data for every course at the university.
+get_department retrieves data for all courses within the given department. 
+get_course retrieves data for all sections of a course given.
+
+
+Look at the function declarations in scraper.py if more information is needed.
+
+## Output
+
+Currently, all data will be written to the corresponding department directory within the courses directory. 
+
+This needs to be adjusted to write directly to the database.
