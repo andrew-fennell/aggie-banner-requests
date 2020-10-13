@@ -2,8 +2,6 @@ import time
 import json
 import requests
 import os
-from pymongo import MongoClient
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -45,8 +43,6 @@ subjects = CONFIG.VARIABLES['subjects']
 
 
 
-
-
 def CompassConstructSearch(dept, course, sessionID, term, pageMaxSize=1000):
     '''Constructs search request url given the inputs.'''
     # Base Compass URL
@@ -70,7 +66,6 @@ def start_session():
 
     # Load page to initialize session
     s.get('https://{}/StudentRegistrationSsb/ssb/term/termSelection?mode=search'.format(base_url))
-    #time.sleep(3)
 
     # Navigating webpage
     term_area = s.find_element_by_class_name('select2-container')
@@ -125,20 +120,6 @@ def search(session, sessionID, dept, course, term):
 
     return data
 
-def write_data(outfile, course_data):
-    '''Takes course data and writes it to txt file'''
-    outfile.write("courseTitle: " + str(course_data['courseTitle']) + '\n')
-    outfile.write("subject: " + str(course_data['subject']) + '\n')
-    outfile.write("courseNumber: " + str(course_data['courseNumber']) + '\n')
-    outfile.write("sequenceNumber: " + str(course_data['sequenceNumber']) + '\n')
-    outfile.write("id: " + str(course_data['id']) + '\n')
-    outfile.write("term: " + str(course_data['term']) + '\n')
-    outfile.write("campusDescription: " + str(course_data['campusDescription']) + '\n')
-    outfile.write("maximumEnrollment: " + str(course_data['maximumEnrollment']) + '\n')
-    outfile.write("enrollment: " + str(course_data['enrollment']) + '\n')
-    outfile.write("seatsAvailable: " + str(course_data['seatsAvailable']) + '\n')
-    outfile.write('\n')
-
 def make_course_json(course_data):
     '''Takes course data and returns object that can be written to a json file'''
     x = {
@@ -146,6 +127,8 @@ def make_course_json(course_data):
         "subject": str(course_data['subject']),
         "courseNumber": str(course_data['courseNumber']),
         "sequenceNumber": str(course_data['sequenceNumber']),
+        "professor": "",
+        "professorEmail": "",
         "id": str(course_data['id']),
         "term": str(course_data['term']),
         "campusDescription": str(course_data['campusDescription']),
@@ -153,6 +136,10 @@ def make_course_json(course_data):
         "enrollment": str(course_data['enrollment']),
         "seatsAvailable": str(course_data['seatsAvailable']),
     }
+
+    if (course_data['faculty']): # since faculty is not always completed, this is checked for separately
+        x['professor'] = course_data['faculty'][0]['displayName']
+        x['professorEmail'] = course_data['faculty'][0]['emailAddress']
 
     return x
 
@@ -172,6 +159,11 @@ def write_json(department, data):
             
         json_data['course'].append(make_course_json(x))
     
+    if (data):
+        return True
+    else:
+        return False
+    
 
 def get_all_courses(session, sessionID, term):
     '''
@@ -187,22 +179,8 @@ def get_all_courses(session, sessionID, term):
         print()
         print("Getting Data for " + department)
         data = search(session, sessionID, department, '', '202031')
-        print()
         
-        # Write data to file to courses/{department}/{courseNumber}.json
-        if data:
-            prev = str(data[0]['courseNumber'])
-            outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
-            for x in data:
-
-                current = str(x['courseNumber'])
-                if prev != current:
-                    outfile.close()
-                    prev = current
-                    outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
-                    
-                write_data(outfile, x)
-
+        if (write_json(department, data)):
             print("Data Retrieved for " + department)
         else:
             print("No data for " + department)
@@ -221,20 +199,7 @@ def get_department(session, sessionID, department, term):
     print("Getting Data for " + department)
     data = search(session, sessionID, department, '', '202031')
     
-    
-    # Write data to file to courses/{department}/{courseNumber}.txt
-    if data:
-        prev = str(data[0]['courseNumber'])
-        outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
-        for x in data:
-            current = str(x['courseNumber'])
-            if prev != current:
-                outfile.close()
-                prev = current
-                outfile = open('courses/' + department + "/" + prev + ".json", 'w+')
-                
-            write_data(outfile, x)
-
+    if (write_json(department, data)):
         print("Data Retrieved for " + department)
     else:
         print("No data for " + department)
@@ -253,85 +218,25 @@ def get_course(session, sessionID, department, course, term):
     data = search(session, sessionID, department, course, '202031')
     print()
     
-    json_data = {}
-    json_data['course'] = []
-    # Write data to file to courses/{department}/{courseNumber}.json
-    if data:
-        prev = str(data[0]['courseNumber'])
-        for x in data:
-            
-            current = str(x['courseNumber'])
-            if prev != current:
-                with open('courses/' + department + "/" + prev + ".json", 'w+') as outfile:
-                    json.dump(json_data['course'], outfile)
-
-                prev = current
-                json_data['course'] = []
-                
-            json_data['course'].append(make_course_json(x))
-            
-        print("Data Retrieved for " + department + course)
+    if (write_json(department, data)):
+        print("Data Retrieved for " + department)
     else:
-        print("No data for " + department + course)
-
-def startDB():
-    print("Starting MongoDB...")
-    client = MongoClient('localhost', 27017)
-    db = client['agreq']
-    collection_course = db['course']
-    print()
-
-    return client, collection_course
-
-#def dataToDB():
-#    for dept in subjects:
+        print("No data for " + department)
 
 def makeFolders():
-    makedir.initFolders()
-
-def main():
-    # Make directories if needed
-    if (not os.path.isfile(path + '/courses/ACCT')):
-        makeFolders()
-    
-    # Start session
-    session, sessionID = start_session()
-
-    term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
-
-    # THESE ARE 3 WAYS TO RUN THE PROGRAM:
-    get_all_courses(session, sessionID, term)                # Example of getting ALL data
-    #get_department(session, sessionID, 'MATH', term)        # Example of getting one department's data
-    #get_course(session, sessionID, 'CSCE', '221', term)     # Example of getting one course's data
+    if (not os.path.isdir(path + "/courses/ACCT")): # checks to see if the directories are already made
+        makedir.initFolders() # if directories do not exist, create them
 
 
-    # Threading to collect data from ALL courses quicker... It might be a sloppy solution though
-    """
-    processes = []
-    with ThreadPoolExecutor(max_workers=4) as executor:
-        for dept in subjects:
-            processes.append(executor.submit(get_department, session, sessionID, dept, term))
 
-    print("\n========================\n")
-    """
-    
-    #client, collection_course = startDB()
+# Start session
+# session, sessionID = start_session()
 
-    #directory = path + '\courses'
+# Setup term
+# term = '202031' # 2020 3 1 where 2020 is year, 3 is fall, 1 is location
 
-    #for subdir, dirs, files in os.walk(directory):
-    #   for filename in files:
-     #       if filename.endswith('.json'):
-      #          
-       #         with open(r'{}\{}'.format(subdir,filename)) as file: 
-        #            file_data = json.load(file)
-         #       
-          #      if file_data:
-           #         if isinstance(file_data, list): 
-            #            collection_course.insert_many(file_data)   
-             #       else: 
-              #          collection_course.insert_one(file_data) 
+# THESE ARE 3 FUNCTIONS THAT GET DATA:
+# get_all_courses(session, sessionID, term)               # Example of getting ALL data
+# get_department(session, sessionID, 'ACCT', term)        # Example of getting one department's data
+# get_course(session, sessionID, 'CSCE', '221', term)     # Example of getting one course's data
 
-    #client.close()
-
-main()
